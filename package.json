@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dbhullar/alive/issues"
   },
-  "homepage": "https://github.com/dbhullar/alive#readme"
+  "homepage": "https://github.com/dbhullar/alive#readme",
+  "dependencies": {
+    "pkg": "^4.4.9"
+  }
 }
