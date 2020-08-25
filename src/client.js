@@ -1,30 +1,38 @@
 var http = require('http');
-var dt = require('./date');
+var dt = require('./common/date');
 var crypto = require('crypto');
 
+// get ip address and port as arguments
 var myArgs = process.argv.slice(2);
 var options = {
   host: myArgs[0],
-  port: myArgs[1]
+  port: myArgs[1],
+  path: '/alive',  //always look for the 'alive' route
+  method: 'GET',
 };
 
-var d = dt.myDateTime();
-var h = crypto.createHash('sha256').update(d).digest('hex');  
+// save current timestamp and create a local hashed 
+var local_dt = dt.myDateTime();
+var local_hash = crypto.createHash('sha256').update(local_dt).digest('hex');  
 
 callback = function(response) {
   var str = '';
 
-  //another chunk of data has been received, so append it to `str`
+  // collect the response
   response.on('data', function (chunk) {
     str += chunk;
   });
 
-  //the whole response has been received, so we just print it out here
+  // response collected
   response.on('end', function () { 
-    if (str.endsWith(h))
+    
+    // if we have a match say something
+    if (str.endsWith(local_hash))
     {
-        console.log(d);
+      // ..the say something  
+      console.log(local_dt);
     }
+    // ..stay quite
   });
 }
 

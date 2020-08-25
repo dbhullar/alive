@@ -8,14 +8,29 @@ Download node.js from https://nodejs.org/en/download/ and follow instructions to
 
 Clone this project from github.com
 
-## Usage
-To start server
+## To build and create dist
+Install the dependencies in the local node_modules folder
 ```node
-node /src/server.js
+npm install
 ```
-To start the client, you give the ip address and port you want to connect to
+To create distributables for mac, linus and windows
 ```node
-node /src/client.js 127.0.0.1 1337
+npm run dist
+```
+
+## Usage
+To start server on mac or linux
+```node
+./dist/alive-<os_platform>
+```
+To start server on windows
+```node
+<Drive>:\alive--win.exe
+
+```
+To start the simple client, you give the ip address and port you want to connect to
+```node
+node /src/client.js <host> <port>
 ```
 
 If the server exist and we recognize the hashed response we display the timestamp:
